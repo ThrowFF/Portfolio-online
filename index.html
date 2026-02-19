@@ -24,16 +24,17 @@
     </div>
 
     <script>
-      var buildUrl = "Build"; // folder where your .data, .wasm, .framework.js files are
-      var loaderUrl = buildUrl + "Portfolio-online.loader.js"; // e.g. "Build/MyGame.loader.js"
-      var config = {
-        dataUrl:          buildUrl + "/%UNITY_WEBGL_BUILD_URL%.data",
-        frameworkUrl:     buildUrl + "/%UNITY_WEBGL_BUILD_URL%.framework.js",
-        codeUrl:          buildUrl + "/%UNITY_WEBGL_BUILD_URL%.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName:      "DefaultCompany",
-        productName:      "MyGame",
-        productVersion:   "1.0",
+      var buildUrl = "Build"; // ← folder name (case-sensitive!)
+var loaderUrl = buildUrl + "/BuildPortfolio-online.loader.js"; // ← exact filename
+
+var config = {
+  dataUrl:       buildUrl + "/BuildPortfolio-online.data",
+  frameworkUrl:  buildUrl + "/BuildPortfolio-online.framework.js",
+  codeUrl:       buildUrl + "/BuildPortfolio-online.wasm",
+  streamingAssetsUrl: "StreamingAssets",
+  companyName:   "DefaultCompany",
+  productName:   "MyGame",
+  productVersion: "1.0",
       };
 
       var canvas = document.querySelector("#unity-canvas");
