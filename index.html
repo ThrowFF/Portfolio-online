@@ -15,7 +15,6 @@
         overflow: hidden;
       }
 
-      /* Animated background canvas sits behind everything */
       #bg-canvas {
         position: fixed;
         top: 0; left: 0;
@@ -61,23 +60,19 @@
     </div>
 
     <script>
-      // ── Responsive scaling (unchanged) ──────────────────────────────
       function resizeCanvas() {
-  const container = document.getElementById('unity-container');
-  const scaleX = window.innerWidth / 1280;
-  const scaleY = window.innerHeight / 720;
-  const scale = Math.min(Math.max(Math.min(scaleX, scaleY), 0.75), 1);
-  container.style.transform = `scale(${scale})`;
-
-  // Collapse the leftover layout space so it doesn't overflow
-  const excessW = (1280 * scale - 1280) / 2;
-  const excessH = (720 * scale - 720) / 2;
-  container.style.margin = `${excessH}px ${excessW}px`;
-}
+        const container = document.getElementById('unity-container');
+        const scaleX = window.innerWidth / 1280;
+        const scaleY = window.innerHeight / 720;
+        const scale = Math.min(Math.max(Math.min(scaleX, scaleY), 0.75), 1);
+        container.style.transform = `scale(${scale})`;
+        const excessW = (1280 * scale - 1280) / 2;
+        const excessH = (720 * scale - 720) / 2;
+        container.style.margin = `${excessH}px ${excessW}px`;
+      }
       resizeCanvas();
       window.addEventListener('resize', resizeCanvas);
 
-      // ── Animated background ─────────────────────────────────────────
       const bg = document.getElementById('bg-canvas');
       const ctx = bg.getContext('2d');
 
@@ -88,14 +83,13 @@
       resizeBg();
       window.addEventListener('resize', resizeBg);
 
-      // Soft floating orbs
       const orbs = Array.from({ length: 6 }, () => ({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
         r: 180 + Math.random() * 200,
         dx: (Math.random() - 0.5) * 0.3,
         dy: (Math.random() - 0.5) * 0.3,
-        hue: Math.random() < 0.5 ? 220 : 260,   // cool blues / purples
+        hue: Math.random() < 0.5 ? 220 : 260,
         opacity: 0.04 + Math.random() * 0.06,
       }));
 
@@ -116,7 +110,6 @@
           o.x += o.dx;
           o.y += o.dy;
 
-          // Soft bounce
           if (o.x < -o.r) o.x = bg.width + o.r;
           if (o.x > bg.width + o.r) o.x = -o.r;
           if (o.y < -o.r) o.y = bg.height + o.r;
